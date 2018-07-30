@@ -1,0 +1,17 @@
+{
+  "name": "socketizer",
+  "version": "1.0.0",
+  "description": "Promise based socket communication for Node.js",
+  "main": "dist/socketizer.cjs.js",
+  "module": "dist/socketizer.es.js",
+  "repository": "git@github.com:bjoernricks/socketizer.git",
+  "author": "Björn Ricks <bjoern.ricks@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^0.63.2",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "scripts": {
+    "build": "rollup -c"
+  }
+}
