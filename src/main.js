@@ -60,15 +60,14 @@ class Socket {
         this.socket.removeListener('end', onceEnd);
         this.socket.removeListener('error', onceError);
         this.socket.removeListener('readable', onReadable);
-        resolve();
-
+        resolve(data);
       }
 
       const onceEnd = () => {
         this.socket.removeListener('close', onceClose);
         this.socket.removeListener('error', onceError);
         this.socket.removeListener('readable', onReadable);
-        resolve();
+        resolve(data);
       }
 
       const onceError = err => {
