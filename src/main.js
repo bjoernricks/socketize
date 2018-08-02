@@ -47,33 +47,34 @@ class Socket {
         return resolve();
       }
 
+      const cleanUp = () => {
+        this.socket.removeListener('end', onceEnd);
+        this.socket.removeListener('error', onceError);
+        this.socket.removeListener('data', onData);
+      }
+
       let data;
       const onData = chunk => {
         data = readFunc(data, chunk);
 
         if (isDone(data)) {
+          cleanUp();
           resolve(data)
         }
       }
 
       const onceClose = () => {
-        this.socket.removeListener('end', onceEnd);
-        this.socket.removeListener('error', onceError);
-        this.socket.removeListener('readable', onReadable);
+        cleanUp();
         resolve(data);
       }
 
       const onceEnd = () => {
-        this.socket.removeListener('close', onceClose);
-        this.socket.removeListener('error', onceError);
-        this.socket.removeListener('readable', onReadable);
+        cleanUp();
         resolve(data);
       }
 
       const onceError = err => {
-        this.socket.removeListener('close', onceClose);
-        this.socket.removeListener('end', onceEnd);
-        this.socket.removeListener('readable', onReadable);
+        cleanUp();
         reject(err);
       }
 
