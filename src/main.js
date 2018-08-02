@@ -40,22 +40,19 @@ class Socket {
     });
   }
 
-  read(...args) {
+  read(readFunc = (data = '', chunk) => data += chunk, isDone = () => true) {
     return new Promise((resolve, reject) => {
       if (!this.socket.readable || this.socket.closed ||
         this.socket.destroyed) {
         return resolve();
       }
 
-      const onReadable = () => {
-        let chunk = this.socket.read(...args);
+      let data;
+      const onData = chunk => {
+        data = readFunc(data, chunk);
 
-        if (chunk != null) {
-          this.socket.removeListener('close', onceClose);
-          this.socket.removeListener('error', onceError);
-          this.socket.removeListener('end', onceEnd);
-          this.socket.removeListener('readable', onReadable);
-          resolve(chunk);
+        if (isDone(data)) {
+          resolve(data)
         }
       }
 
@@ -81,12 +78,10 @@ class Socket {
         reject(err);
       }
 
+      this.socket.on('data', onData);
       this.socket.once('close', onceClose);
-      this.socket.on('readable', onReadable);
       this.socket.once('end', onceEnd);
       this.socket.once('error', onceError);
-
-      onReadable();
     });
   }
 
