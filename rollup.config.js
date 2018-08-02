@@ -1,3 +1,5 @@
+import minify from 'rollup-plugin-babel-minify';
+
 import pkg from './package.json';
 
 export default {
@@ -11,6 +13,9 @@ export default {
   }],
   external: [
     'net',
+  ],
+  plugins: [
+    minify(),
   ],
 };
 

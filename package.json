@@ -9,6 +9,7 @@
   "license": "MIT",
   "devDependencies": {
     "rollup": "^0.63.2",
+    "rollup-plugin-babel-minify": "^5.0.0",
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "scripts": {
