@@ -85,7 +85,7 @@ class Socket {
     });
   }
 
-  write(data, encoding) {
+  write(data) {
     return new Promise((resolve, reject) => {
       if (!this.socket.writable || this.socket.closed ||
         this.socket.destroyed) {
@@ -99,7 +99,7 @@ class Socket {
 
       this.socket.once('error', onceError);
 
-      if (this.socket.write(data, encoding)) {
+      if (this.socket.write(data)) {
         this.socket.removeListener('error', onceError);
         if (!this._errored) {
           resolve(data.length);
