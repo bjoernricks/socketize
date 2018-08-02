@@ -1,10 +1,12 @@
+import pkg from './package.json';
+
 export default {
   input: 'src/main.js',
   output: [{
-    file: 'dist/socketizer.cjs.js',
+    file: pkg.main,
     format: 'cjs',
   }, {
-    file: 'dist/socketizer.es.js',
+    file: pkg.module,
     format: 'es',
   }],
   external: [
