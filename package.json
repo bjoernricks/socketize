@@ -4,6 +4,7 @@
   "description": "Promise based socket communication for Node.js",
   "main": "dist/socketize.cjs.js",
   "module": "dist/socketize.es.js",
+  "keywords": ["socket", "networking", "promise"],
   "repository": "git@github.com:bjoernricks/socketize.git",
   "author": "Björn Ricks <bjoern.ricks@gmail.com>",
   "license": "MIT",
