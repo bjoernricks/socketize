@@ -1,4 +1,4 @@
-/* socketizer - Promise based socket communication for Node.js
+/* socketize - Promise based socket communication for Node.js
 *
 * Copyright (C) 2018 Björn Ricks <bjoern.ricks@gmail.com>
 *
