@@ -39,7 +39,7 @@ socket.connect({path: '/var/run/my.unix.socket'})
   .then(() => socket.write('Hello world'));
   .then(() => socket.read())
   // remote server responds with '42'
-  .then(answer => console.log('The answer is' answer));
+  .then(answer => console.log('The answer is', answer));
   // 'The answer is 42'
   .catch(err => console.log(err));
 ```
